@@ -26,20 +26,28 @@ body {
 FORMAT DOCUMENT A4
 ============================= */
 
-#doc {
+.page {
+
   width: 794px;
   height: 1123px;
-  margin: 40px auto;
+
   background: #fcfcfc;
+
+  margin: 40px auto;
+
   position: relative;
+
   overflow: hidden;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
 }
 
 /* =============================
 FILIGRANE FOND DOCUMENT
 ============================= */
 
-#doc::before {
+.page::before {
 
   content: "";
 
@@ -87,6 +95,7 @@ h2 {
 
 }
 
+
 /* SECTIONS */
 
 .section {
@@ -110,39 +119,60 @@ h2 {
 }
 
 /* =============================
-ZONE SIGNATURE BAS DOCUMENT
+ZONE DOUBLE SIGNATURE
 ============================= */
 
-.signature-block {
+.signature-container {
+
   position: absolute;
-  bottom: 40px;
+
+  bottom: 70px;
+
   left: 60px;
   right: 60px;
 
   display: flex;
+
   justify-content: space-between;
-  align-items: flex-end;
+
+  gap: 40px;
+
+  z-index: 2;
+
 }
 
-/* LOGOS */
+.signature-box {
 
-.logo {
-  width: 120px;
-}
+  width: 45%;
 
-/* BLOC CENTRE (fonction + nom) */
-
-.signataire {
   text-align: center;
+
 }
 
-/* SIGNATURE MANUSCRITE */
+.signature-line {
+
+  margin-top: 60px;
+
+  border-top: 1px solid #000;
+
+  padding-top: 8px;
+
+  font-size: 14px;
+
+}
 
 .signature-hand {
+
   font-family: 'Great Vibes', cursive;
-  font-size: 48px;
+
+  font-size: 42px;
+
   transform: rotate(-6deg);
-  white-space: nowrap;
+
+  margin-bottom: -10px;
+
+  color: #111;
+
 }
 
 /* =============================
@@ -189,6 +219,38 @@ FORMULAIRE HAUT PAGE
   color: #11263e; /* couleur */
 }
 
+.confidentiel {
+  color: #8B0000;
+  font-weight: bold;
+}
+
+/* =============================
+PIED DE PAGE
+============================= */
+
+.page-footer {
+
+  position: absolute;
+
+  bottom: 15px;
+
+  left: 0;
+  width: 100%;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  color: #555;
+
+  border-top: 1px solid #ccc;
+
+  padding-top: 8px;
+
+  z-index: 2;
+
+}
+
 </style>
 </head>
 
@@ -202,12 +264,13 @@ FORMULAIRE UTILISATEUR
 
 <div class="form-grid">
 
-<input id="name" placeholder="Nom">
-<input id="date" placeholder="Date">
-<input id="ref" placeholder="Référence">
-
-<input id="fonctionSignataire" placeholder="Fonction">
-<input id="nomSignataire" placeholder="Signataire">
+<input id="name" placeholder="Matricule de l’agent :">
+<input id="date" placeholder="Date d’entrée en fonction :">
+<input id="ref" placeholder="Référence du dossier :">
+<input id="nomR" placeholder="Nom réel :">
+<input id="alias" placeholder="Alias / Faux nom opérationnel :">
+<input id="dateN" placeholder="Date de naissance :">
+<input id="dateJ" placeholder="Date du jour :">
 
 </div>
 
@@ -219,7 +282,10 @@ FORMULAIRE UTILISATEUR
 DOCUMENT FINAL
 ============================= -->
 
-<div id="doc">
+<div id="document-container">
+
+  <!-- PAGE 1 -->
+  <div class="page" id="page1">
 
 <div class="header">
 
@@ -231,76 +297,188 @@ DOCUMENT FINAL
 
 <div class="content">
 
-<h1 class="texte-couleur">COUR SUPRÊME DE JUSTICE</h1>
-<h2 class="texte-couleur">BUREAU DU HAUT JUGE</h2>
+<h1 class="texte-couleur">CONTRAT D’EMBAUCHE</h1>
+<h2 class="texte-couleur">United States Secret Service (USSS)</h2>
+
+<p class="confidentiel">Niveau de Confidentialité : CLASSIFIÉ</p>
+
+<p><span class="bold">Date d’entrée en fonction :</span> <span id="d"></span></p>
+
+<p><span class="bold">Référence du dossier :</span> <span id="r"></span></p>
+
+<hr>
 
 <div class="section">
 
-<p><span class="bold">Date :</span> <span id="d"></span></p>
+<h2 class="texte-couleur">1. IDENTITÉ DE L’AGENT</h2>
 
-<p><span class="bold">Référence :</span> <span id="r"></span></p>
+<p><span class="bold">Matricule de l’agent :</span> <span id="n"></span></p>
 
-<p><span class="bold">Objet :</span> Décision officielle relative à la demande de blanchiment</p>
+<p><span class="bold">Nom réel :</span> <span id="nomr"></span></p>
 
-<p><span class="bold">Demandeur :</span> <span id="n"></span></p>
+<p><span class="bold">Alias / Faux nom opérationnel :</span> <span id="alias1"></span></p>
+
+<p><span class="bold">Date de naissance :</span> <span id="daten"></span></p>
 
 </div>
 
 <hr>
 
-<p class="bold">Au nom de la Loi de l’État de San Andreas,</p> 
+<h2 class="texte-couleur">2. OBJET DU CONTRAT</h2> 
 
-<p> Moi, Haut Juge de la Cour Suprême de San Andreas, après examen approfondi du dossier présenté, des antécédents judiciaires du demandeur ainsi que des éléments fournis attestant de sa réhabilitation sociale et professionnelle, rends la décision suivante : </p> 
+<p> Par le présent document, le United States Secret Service (ci-après nommé « USSS ») confirme l’intégration de l’agent mentionné ci-dessus au sein des opérations de protection, de renseignement et de sécurité nationale dans le cadre d’activités strictement confidentielles.</p> 
 
-<p class="bold">Considérant :</p> 
-
-<ul> 
-<li>Que le demandeur a purgé l’intégralité des peines prononcées à son encontre ;</li> 
-<li>Qu’aucune récidive n’a été constatée sur une période significative ;</li>
-<li>Que le comportement du demandeur démontre une volonté manifeste de réinsertion et de respect des lois en vigueur ;</li> 
-<li>Que les témoignages et documents fournis appuient une conduite exemplaire récente.</li> 
-</ul> 
-
-<p class="bold">Par ces motifs, la Cour décide de :</p> 
+<p class="bold">L’agent accepte :</p> 
 
 <ul> 
-<li>Article 1 - Blanchiment du casier judiciaire. Le casier judiciaire du demandeur est officiellement blanchi, sous réserve des archives internes conservées par les autorités compétentes.</li> 
-<li>Article 2 – Effets de la décision. À compter de ce jour, le demandeur est juridiquement considéré comme n’ayant aucun antécédent pénal, sauf dans le cadre d’enquêtes judiciaires spécifiques nécessitant l’accès aux dossiers scellés.</li> 
-<li>Article 3 – Conditions. Toute nouvelle infraction entraînera la réouverture potentielle des dossiers précédemment blanchis.</li> 
+<li>de respecter la hiérarchie interne ;</li> 
+<li>d’exécuter les missions assignées ;</li>
+<li>de maintenir la confidentialité absolue des informations obtenues ;</li> 
+<li>d’utiliser son identité opérationnelle uniquement dans le cadre des missions autorisées.</li> 
 </ul> 
 
-<div class="footer"> <p class="bold">NOTE OFFICIELLE :</p> <p>Ce document est reconnu comme preuve légale dans toutes les juridictions de l’État de San Andreas. Toute falsification ou usage frauduleux est passible de poursuites judiciaires.</p> 
+<hr>
+
+<h2 class="texte-couleur">3. CLAUSE DE CONFIDENTIALITÉ</h2> 
+
+<p> Toutes les informations, identités, opérations, communications et documents liés aux activités du USSS sont considérés comme :</p>
+
+<p class="confidentiel">« TOP SECRET / EYES ONLY »</p>
+
+<p class="bold">Toute divulgation non autorisée pourra entraîner :</p> 
+
+<ul> 
+<li>suspension immédiate ;</li> 
+<li>révocation du statut d’agent ;</li>
+<li>poursuites internes ;</li> 
+<li>placement en détention fédérale.</li> 
+</ul> 
+
+<p> L’agent s’engage à ne transmettre aucune donnée sensible à des civils, organisations externes ou agences non autorisées.</p>
+
+</div> <!-- FIN PAGE 1 -->
+
+<div class="page-footer">
+  UNITED STATES SECRET SERVICE — Page 1 / 2
+</div>
+
+ </div>
+
+  </div>
+
+<!-- PAGE 2 -->
+  <div class="page" id="page2">
+
+<div class="header">
+
+<img src="banniere.png">
+
+</div>
+
+<div class="ligne-banniere"></div>
+
+<div class="content">
+
+<h2 class="texte-couleur">4. IDENTITÉ OPÉRATIONNELLE</h2> 
+
+<p>L’agent pourra être amené à utiliser :</p> 
+
+<ul> 
+<li>une fausse identité ;</li> 
+<li>de faux documents administratifs ;</li> 
+<li>des véhicules banalisés ;</li>
+<li>des équipements de surveillance ;</li> 
+<li>des codes de communication sécurisés.</li>  
+</ul> 
+
+<p>Toute utilisation abusive en dehors des missions autorisées est interdite.</p>
+
+<hr>
+
+<h2 class="texte-couleur">5. ÉQUIPEMENT FOURNI</h2> 
+
+<p>L’USSS met à disposition de l’agent :</p> 
+
+<ul> 
+<li>Badge fédéral RP ;</li> 
+<li>Carte d’identification sécurisée ;</li> 
+<li>Radio cryptée ;</li>
+<li>Véhicule de service (si autorisé) ;</li> 
+<li>Armement réglementaire ;</li> 
+<li>Accès aux installations sécurisées.</li>   
+</ul> 
+
+<hr>
+
+<h2 class="texte-couleur">6. DURÉE DU CONTRAT</h2>
+ 
+<p>Le présent contrat est établi à durée permanente.<p> 
+<p>L’agent conserve son statut actif au sein du United States Secret Service (USSS)
+jusqu’à révocation officielle, démission volontaire ou décision administrative
+émanant de la direction des opérations.<p> 
+
+<hr>
+
+<div class="footer"> <p class="confidentiel">AVERTISSEMENT FINAL</p> 
+
+<p>Ce document contient des informations classifiées.</p> 
+
+<p>Toute reproduction, diffusion ou consultation non autorisée est interdite.</p> 
+
 </div> 
 
 
 <hr>
 
 <p class="texte-couleur">Fait au Department of Homeland Security en date du :
-<span id="d2"></span>
+<span id="datej"></span>
 </p>
 
-<div class="signature-block">
+<div class="signature-container">
 
-  <!-- GAUCHE (logos) -->
-  <div>
-    <img src="logo1.png" class="logo">
+  <!-- SIGNATURE DIRECTEUR -->
+  <div class="signature-box">
+
+    <div id="signatureDirecteur"
+         class="signature-hand"></div>
+
+    <div class="signature-line">
+
+      <p class="texte-couleur bold">
+        Directeur des opérations USSS
+      </p>
+
+         </div>
+
   </div>
 
-  <!-- CENTRE -->
-  <div class="signataire">
-    <p class="texte-couleur">Fonction : <span id="fonction" class="bold"></span></p>
-    <p class="texte-couleur">Signataire : <span id="nom" class="bold"></span></p>
-  </div>
+  <!-- SIGNATURE AGENT -->
+  <div class="signature-box">
 
-  <!-- DROITE -->
-  <div id="signatureText" class="signature-hand"></div>
+    <div id="signatureAgent"
+         class="signature-hand"></div>
+
+    <div class="signature-line">
+
+      <p class="texte-couleur bold">
+        Signature de l’agent
+      </p>
+
+    </div>
+
+  </div>
 
 </div>
 
-</div> <!-- FIN bottom -->
-</div> <!-- FIN content -->
-</div> <!-- FIN doc -->
+</div> <!-- FIN PAGE 2 -->
 
+<div class="page-footer">
+  UNITED STATES SECRET SERVICE — Page 2 / 2
+</div>
+
+</div> <!-- FIN .page -->
+
+</div> <!-- FIN document-container -->
 
 <script>
 
@@ -315,37 +493,30 @@ function generate() {
   let name = document.getElementById("name").value;
   let date = document.getElementById("date").value;
   let ref = document.getElementById("ref").value;
-  let fonction = document.getElementById("fonctionSignataire").value;
-  let nom = document.getElementById("nomSignataire").value;
-
-
+  let nomR = document.getElementById("nomR").value;
+  let alias = document.getElementById("alias").value;
+  let dateN = document.getElementById("dateN").value;
+  let dateJ = document.getElementById("dateJ").value;
+  
   // Injection valeurs dans document
 
   document.getElementById("n").innerText = name;
   document.getElementById("d").innerText = date;
-  document.getElementById("d2").innerText = date;
   document.getElementById("r").innerText = ref;
+  document.getElementById("nomr").innerText = nomR;
+  document.getElementById("alias1").innerText = alias;
+  document.getElementById("daten").innerText = dateN;
+  document.getElementById("datej").innerText = dateJ;
 
-  document.getElementById("fonction").innerText = fonction || "";
-  document.getElementById("nom").innerText = nom || "";
-
-  // Signature manuscrite
-
-  document.getElementById("signatureText").innerText = nom || "";
-
-
-  // Attendre chargement police signature
 
   document.fonts.ready.then(() => {
 
     setTimeout(() => {
 
-      html2canvas(document.getElementById("doc"), {
+      html2canvas(document.getElementById("document-container"), {
 
         scale: 3,
-        useCORS: true,
-        width: 794,
-        height: 1123
+        useCORS: true
 
       }).then(canvas => {
 
