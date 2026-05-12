@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOJ - Générateur de document</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #1a1a1a;
+            text-align: center;
+            background: #f4efe7;
+        }
+
+        header { padding: 40px 20px; }
+
+        .logo { width: 100px; margin-bottom: 10px; }
+
+        h1 { font-size: 2.5em; }
+
+        .warning {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid red;
+            padding: 10px;
+            margin: 20px auto;
+            width: fit-content;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 220px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #d4af37;
+            color: black;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .btn:hover { background: #c39b2e; }
+
+        .hidden { display: none; }
+
+        .menu {
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 10px auto;
+            width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .card:hover { transform: scale(1.05); }
+
+    </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<header id="loginPage">
+    <img src="logo1.png" class="logo">
+    <h1>USSS</h1>
+    <p>Générateur de document</p>
+
+    <div class="warning">⚠️ Accès strictement réservé aux USSS</div>
+
+    <input type="text" id="username" placeholder="Identifiant"><br>
+    <input type="password" id="password" placeholder="Mot de passe"><br>
+    <button class="btn" onclick="login()">Se connecter</button>
+    <p id="error" style="color:red;"></p>
+</header>
+
+<!-- SOMMAIRE -->
+<header id="menuPage" class="hidden">
+    <img src="logo1.png" class="logo">
+    <h1>Sommaire USSS</h1>
+    <p>Sélectionnez une section</p>
+
+    <div class="menu">
+        <div class="card" onclick="goTo('BlanchissementCasier.html')">📄 Générer blanchiment de casier judiciaire</div>
+    </div>
+        
+    <button class="btn" onclick="logout()">Se déconnecter</button>
+</header>
+
+<script>
+    const USER = "admin";
+    const PASS = "usss123";
+
+    function login() {
+        const u = document.getElementById("username").value;
+        const p = document.getElementById("password").value;
+
+        if (u === USER && p === PASS) {
+            localStorage.setItem("auth", "true");
+            showMenu();
+        } else {
+            document.getElementById("error").textContent = "Identifiants incorrects";
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem("auth");
+        location.reload();
+    }
+
+    function showMenu() {
+        hideAll();
+        document.getElementById("menuPage").classList.remove("hidden");
+    }
+
+    function goTo(page) {
+        window.location.href = page;
+    }
+
+    function back() {
+        showMenu();
+    }
+
+    function hideAll() {
+        document.querySelectorAll("header").forEach(el => el.classList.add("hidden"));
+    }
+
+    if (localStorage.getItem("auth") === "true") {
+        showMenu();
+    }
+</script>
+
+</body>
+</html>
