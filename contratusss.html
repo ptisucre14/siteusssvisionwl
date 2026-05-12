@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+<meta charset="UTF-8">
+
+<!-- Police signature manuscrite -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+<!-- Librairie capture écran -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
+
+<style>
+
+/* =============================
+STYLE GLOBAL PAGE
+============================= */
+
+body {
+  font-family: Arial, sans-serif;
+  background: #ddd;
+  text-align: center;
+}
+
+/* =============================
+FORMAT DOCUMENT A4
+============================= */
+
+#doc {
+  width: 794px;
+  height: 1123px;
+  margin: 40px auto;
+  background: #F8F7F6;
+  position: relative;
+  overflow: hidden;
+}
+
+/* =============================
+FILIGRANE FOND DOCUMENT
+============================= */
+
+#doc::before {
+
+  content: "";
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 80%;
+  height: 80%;
+
+  background: url('filigrane.png') no-repeat center;
+  background-size: contain;
+
+  transform: translate(-50%, -50%);
+
+  opacity: 0.08;
+
+  pointer-events: none;
+
+}
+
+/* =============================
+BANNIERE HAUT PAGE
+============================= */
+
+.header img {
+  width: 100%;
+  display: block;
+}
+
+/* TITRES */
+
+h1 {
+
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 10px;
+
+}
+
+h2 {
+
+  text-align: center;
+  margin-top: 0;
+
+}
+
+/* SECTIONS */
+
+.section {
+
+  margin-top: 15px;
+
+}
+
+.bold {
+
+  font-weight: bold;
+
+}
+
+/* FOOTER TEXTE */
+
+.footer {
+
+  margin-top: 30px;
+
+}
+
+/* =============================
+ZONE SIGNATURE BAS DOCUMENT
+============================= */
+
+.signature-block {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  right: 60px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* LOGOS */
+
+.logo {
+  width: 70px;
+}
+
+/* BLOC CENTRE (fonction + nom) */
+
+.signataire {
+  text-align: center;
+}
+
+/* SIGNATURE MANUSCRITE */
+
+.signature-hand {
+  font-family: 'Great Vibes', cursive;
+  font-size: 48px;
+  transform: rotate(-6deg);
+  white-space: nowrap;
+}
+
+/* =============================
+FORMULAIRE HAUT PAGE
+============================= */
+
+.form-grid {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  max-width: 600px;
+
+  margin: auto;
+
+}
+
+.form-grid input {
+
+  width: 100%;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+}
+
+.content {
+  padding: 30px 60px 200px 60px; /* ← espace en bas */
+  text-align: left;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Générateur Document Justice RP</h2>
+
+<!-- =============================
+FORMULAIRE UTILISATEUR
+============================= -->
+
+<div class="form-grid">
+
+<input id="name" placeholder="Nom">
+<input id="date" placeholder="Date">
+<input id="ref" placeholder="Référence">
+
+<input id="fonctionSignataire" placeholder="Fonction">
+<input id="nomSignataire" placeholder="Signataire">
+
+</div>
+
+<br>
+
+<button onclick="generate()">📄 Générer & Télécharger</button>
+
+<!-- =============================
+DOCUMENT FINAL
+============================= -->
+
+<div id="doc">
+
+<div class="header">
+
+<img src="banniere.png">
+
+</div>
+
+<div class="content">
+
+<h1>COUR SUPRÊME DE JUSTICE</h1>
+<h2>BUREAU DU HAUT JUGE</h2>
+
+<div class="section">
+
+<p><span class="bold">Date :</span> <span id="d"></span></p>
+
+<p><span class="bold">Référence :</span> <span id="r"></span></p>
+
+<p><span class="bold">Objet :</span> Décision officielle relative à la demande de blanchiment</p>
+
+<p><span class="bold">Demandeur :</span> <span id="n"></span></p>
+
+</div>
+
+<hr>
+
+<p class="bold">Au nom de la Loi de l’État de San Andreas,</p> 
+
+<p> Moi, Haut Juge de la Cour Suprême de San Andreas, après examen approfondi du dossier présenté, des antécédents judiciaires du demandeur ainsi que des éléments fournis attestant de sa réhabilitation sociale et professionnelle, rends la décision suivante : </p> 
+
+<p class="bold">Considérant :</p> 
+
+<ul> 
+<li>Que le demandeur a purgé l’intégralité des peines prononcées à son encontre ;</li> 
+<li>Qu’aucune récidive n’a été constatée sur une période significative ;</li>
+<li>Que le comportement du demandeur démontre une volonté manifeste de réinsertion et de respect des lois en vigueur ;</li> 
+<li>Que les témoignages et documents fournis appuient une conduite exemplaire récente.</li> 
+</ul> 
+
+<p class="bold">Par ces motifs, la Cour décide de :</p> 
+
+<ul> 
+<li>Article 1 - Blanchiment du casier judiciaire. Le casier judiciaire du demandeur est officiellement blanchi, sous réserve des archives internes conservées par les autorités compétentes.</li> 
+<li>Article 2 – Effets de la décision. À compter de ce jour, le demandeur est juridiquement considéré comme n’ayant aucun antécédent pénal, sauf dans le cadre d’enquêtes judiciaires spécifiques nécessitant l’accès aux dossiers scellés.</li> 
+<li>Article 3 – Conditions. Toute nouvelle infraction entraînera la réouverture potentielle des dossiers précédemment blanchis.</li> 
+</ul> 
+
+<div class="footer"> <p class="bold">NOTE OFFICIELLE :</p> <p>Ce document est reconnu comme preuve légale dans toutes les juridictions de l’État de San Andreas. Toute falsification ou usage frauduleux est passible de poursuites judiciaires.</p> 
+</div> 
+
+
+<hr>
+
+<p>Fait au Palais de Justice de San Andreas en date du :
+<span id="d2"></span>
+</p>
+
+<div class="signature-block">
+
+  <!-- GAUCHE (logos) -->
+  <div>
+    <img src="logo1.png" class="logo">
+    <img src="logo2.png" class="logo">
+  </div>
+
+  <!-- CENTRE -->
+  <div class="signataire">
+    <p>Fonction : <span id="fonction" class="bold"></span></p>
+    <p>Signataire : <span id="nom" class="bold"></span></p>
+  </div>
+
+  <!-- DROITE -->
+  <div id="signatureText" class="signature-hand"></div>
+
+</div>
+
+</div> <!-- FIN bottom -->
+</div> <!-- FIN content -->
+</div> <!-- FIN doc -->
+
+
+<script>
+
+/* =============================
+FONCTION GENERATION DOCUMENT
+============================= */
+
+function generate() {
+
+  // Récupération champs utilisateur
+
+  let name = document.getElementById("name").value;
+  let date = document.getElementById("date").value;
+  let ref = document.getElementById("ref").value;
+  let fonction = document.getElementById("fonctionSignataire").value;
+  let nom = document.getElementById("nomSignataire").value;
+
+
+  // Injection valeurs dans document
+
+  document.getElementById("n").innerText = name;
+  document.getElementById("d").innerText = date;
+  document.getElementById("d2").innerText = date;
+  document.getElementById("r").innerText = ref;
+
+  document.getElementById("fonction").innerText = fonction || "";
+  document.getElementById("nom").innerText = nom || "";
+
+  // Signature manuscrite
+
+  document.getElementById("signatureText").innerText = nom || "";
+
+
+  // Attendre chargement police signature
+
+  document.fonts.ready.then(() => {
+
+    setTimeout(() => {
+
+      html2canvas(document.getElementById("doc"), {
+
+        scale: 3,
+        useCORS: true,
+        width: 794,
+        height: 1123
+
+      }).then(canvas => {
+
+        let link = document.createElement("a");
+
+        link.download = "document-rp.png";
+
+        link.href = canvas.toDataURL("image/png");
+
+        link.click();
+
+      });
+
+    }, 300); // ← manquait ici
+
+  });
+
+}
+</script>
+
+</body>
+</html>
