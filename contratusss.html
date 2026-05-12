@@ -19,8 +19,6 @@ STYLE GLOBAL
 ========================= */
 
 body{
-    margin:0;
-    padding:30px;
     background:#dcdcdc;
     font-family:Arial, sans-serif;
     text-align:center;
@@ -103,7 +101,7 @@ FILIGRANE
 
     transform:translate(-50%, -50%);
 
-    opacity:0.08;
+    opacity:0.15;
 
     pointer-events:none;
 }
@@ -128,7 +126,7 @@ CONTENU
 ========================= */
 
 .content{
-    padding:35px 55px 180px 55px;
+    padding:35px 55px 120px 55px;
     position:relative;
     z-index:2;
 }
@@ -147,9 +145,26 @@ h2{
     margin-top:20px;
 }
 
+.texte-couleur{
+    color:#11263e;
+}
+
+.signature-space{
+    margin-bottom:140px;
+}
+
 .bold{
     font-weight:bold;
 }
+
+p{
+    margin: 4px 0;
+}
+
+hr{
+    margin: 4px 0;
+}
+
 
 .confidentiel{
     color:#8B0000;
@@ -172,7 +187,7 @@ SIGNATURES
 
     position:absolute;
 
-    bottom:80px;
+    bottom:90px;
 
     left:60px;
     right:60px;
@@ -192,14 +207,11 @@ SIGNATURES
 }
 
 .signature-hand{
-
-    font-family:'Great Vibes', cursive;
-
+    font-family:'Great Vibes', cursive !important;
     font-size:42px;
-
     transform:rotate(-6deg);
-
     margin-bottom:-10px;
+    display:block;
 }
 
 .signature-line{
@@ -243,225 +255,200 @@ FOOTER
 
 <h2>Générateur Document USSS</h2>
 
-<!-- =========================
-FORMULAIRE
-========================= -->
+<!-- =============================
+FORMULAIRE UTILISATEUR
+============================= -->
 
 <div class="form-grid">
 
-<input id="name" placeholder="Matricule de l’agent">
-<input id="date" placeholder="Date d’entrée en fonction">
+<input id="name" placeholder="Matricule de l’agent :">
+<input id="date" placeholder="Date d’entrée en fonction :">
 
-<input id="ref" placeholder="Référence du dossier">
-<input id="nomR" placeholder="Nom réel">
+<input id="ref" placeholder="Référence du dossier :">
+<input id="nomR" placeholder="Nom réel :">
 
-<input id="alias" placeholder="Alias opérationnel">
-<input id="dateN" placeholder="Date de naissance">
+<input id="alias" placeholder="Alias / Faux nom opérationnel :">
+<input id="dateN" placeholder="Date de naissance :">
 
-<input id="dateJ" placeholder="Date du jour">
+<input id="dateJ" placeholder="Date du jour :">
+<input id="nomD" placeholder="Nom Directeur">
 
 </div>
 
-<button onclick="generate()">
-📄 Générer les 2 pages PNG
-</button>
+<button onclick="generate()">📄 Générer & Télécharger</button>
 
-<!-- =====================================================
+
+<!-- =============================
 PAGE 1
-===================================================== -->
+============================= -->
 
 <div class="page" id="page1">
 
-    <div class="header">
-        <img src="banniere.png">
-    </div>
+<div class="header">
 
-    <div class="ligne-banniere"></div>
+<img src="banniere.png">
 
-    <div class="content">
+</div>
 
-        <h1>CONTRAT D’EMBAUCHE</h1>
+<div class="ligne-banniere"></div>
 
-        <h2>United States Secret Service (USSS)</h2>
+<div class="content">
 
-        <p class="confidentiel">
-            Niveau de Confidentialité : CLASSIFIÉ
-        </p>
+<h1>CONTRAT D’EMBAUCHE</h1>
+<h2>United States Secret Service (USSS)</h2>
 
-        <p>
-            <span class="bold">Date d’entrée en fonction :</span>
-            <span id="d"></span>
-        </p>
+<p class="confidentiel">Niveau de Confidentialité : CLASSIFIÉ</p>
+<p><span class="bold">Date d’entrée en fonction :</span> <span id="d"></span></p>
+<p><span class="bold">Référence du dossier :</span> <span id="r"></span></p>
 
-        <p>
-            <span class="bold">Référence du dossier :</span>
-            <span id="r"></span>
-        </p>
+<hr>
 
-        <hr>
+<h2>1. IDENTITÉ DE L’AGENT</h2>
 
-        <h2>1. IDENTITÉ DE L’AGENT</h2>
+<p><span class="bold">Matricule de l’agent :</span> <span id="n"></span></p>
+<p><span class="bold">Nom réel :</span> <span id="nomr"></span></p>
+<p><span class="bold">Alias / Faux nom opérationnel :</span> <span id="alias1"></span></p>
+<p><span class="bold">Date de naissance :</span> <span id="daten"></span></p>
 
-        <p>
-            <span class="bold">Matricule :</span>
-            <span id="n"></span>
-        </p>
+<hr>
 
-        <p>
-            <span class="bold">Nom réel :</span>
-            <span id="nomr"></span>
-        </p>
+<h2>2. OBJET DU CONTRAT</h2> 
 
-        <p>
-            <span class="bold">Alias :</span>
-            <span id="alias1"></span>
-        </p>
+<p> Par le présent document, le United States Secret Service (ci-après nommé « USSS ») confirme l’intégration de l’agent mentionné ci-dessus au sein des opérations de protection, de renseignement et de sécurité nationale dans le cadre d’activités strictement confidentielles.</p> 
 
-        <p>
-            <span class="bold">Date de naissance :</span>
-            <span id="daten"></span>
-        </p>
+<p class="bold">L’agent accepte :</p> 
 
-        <hr>
+<ul> 
+<li>de respecter la hiérarchie interne ;</li> 
+<li>d’exécuter les missions assignées ;</li>
+<li>de maintenir la confidentialité absolue des informations obtenues ;</li> 
+<li>d’utiliser son identité opérationnelle uniquement dans le cadre des missions autorisées.</li> 
+</ul> 
 
-        <h2>2. OBJET DU CONTRAT</h2>
+<hr>
 
-        <p>
-            Le United States Secret Service confirme
-            l’intégration officielle de l’agent au sein
-            des opérations fédérales classifiées.
-        </p>
+<h2>3. CLAUSE DE CONFIDENTIALITÉ</h2> 
 
-        <ul>
-            <li>Respect de la hiérarchie interne</li>
-            <li>Confidentialité absolue</li>
-            <li>Exécution des missions assignées</li>
-            <li>Usage réservé de l’identité opérationnelle</li>
-        </ul>
+<p> Toutes les informations, identités, opérations, communications et documents liés aux activités du USSS sont considérés comme :</p>
 
-        <hr>
+<p class="confidentiel">« TOP SECRET / EYES ONLY »</p>
 
-        <h2>3. CLAUSE DE CONFIDENTIALITÉ</h2>
+<p class="bold">Toute divulgation non autorisée pourra entraîner :</p> 
 
-        <p>
-            Toutes les données liées au USSS sont classifiées.
-        </p>
+<ul> 
+<li>suspension immédiate ;</li> 
+<li>révocation du statut d’agent ;</li>
+<li>poursuites internes ;</li> 
+<li>placement en détention fédérale.</li> 
+</ul> 
 
-        <p class="confidentiel">
-            « TOP SECRET / EYES ONLY »
-        </p>
+<p> L’agent s’engage à ne transmettre aucune donnée sensible à des civils, organisations externes ou agences non autorisées.</p>
 
-        <ul>
-            <li>Suspension immédiate</li>
-            <li>Révocation du statut</li>
-            <li>Poursuites internes</li>
-            <li>Détention fédérale</li>
-        </ul>
+</div> <!-- FIN PAGE 1 -->
 
-    </div>
-
-    <div class="page-footer">
-        UNITED STATES SECRET SERVICE — Page 1 / 2
-    </div>
+<div class="page-footer">
+  UNITED STATES SECRET SERVICE — Page 1 / 2
+</div>
 
 </div>
 
 <!-- =====================================================
 PAGE 2
 ===================================================== -->
+  <div class="page" id="page2">
 
-<div class="page" id="page2">
+<div class="header">
 
-    <div class="header">
-        <img src="banniere.png">
-    </div>
+<img src="banniere.png">
 
-    <div class="ligne-banniere"></div>
+</div>
 
-    <div class="content">
+<div class="ligne-banniere"></div>
 
-        <h2>4. IDENTITÉ OPÉRATIONNELLE</h2>
+<div class="content">
 
-        <ul>
-            <li>Fausses identités</li>
-            <li>Documents sécurisés</li>
-            <li>Véhicules banalisés</li>
-            <li>Codes cryptés</li>
-        </ul>
+<h2>4. IDENTITÉ OPÉRATIONNELLE</h2> 
 
-        <hr>
+<p>L’agent pourra être amené à utiliser :</p> 
 
-        <h2>5. ÉQUIPEMENT FOURNI</h2>
+<ul> 
+<li>une fausse identité ;</li> 
+<li>de faux documents administratifs ;</li> 
+<li>des véhicules banalisés ;</li>
+<li>des équipements de surveillance ;</li> 
+<li>des codes de communication sécurisés.</li>  
+</ul> 
 
-        <ul>
-            <li>Badge fédéral</li>
-            <li>Carte sécurisée</li>
-            <li>Radio cryptée</li>
-            <li>Armement réglementaire</li>
-        </ul>
+<p>Toute utilisation abusive en dehors des missions autorisées est interdite.</p>
 
-        <hr>
+<hr>
 
-        <h2>6. DURÉE DU CONTRAT</h2>
+<h2>5. ÉQUIPEMENT FOURNI</h2> 
 
-        <p>
-            Le contrat est établi à durée permanente.
-        </p>
+<p>L’USSS met à disposition de l’agent :</p> 
 
-        <p>
-            L’agent conserve son statut actif
-            jusqu’à révocation officielle.
-        </p>
+<ul> 
+<li>Badge fédéral RP ;</li> 
+<li>Carte d’identification sécurisée ;</li> 
+<li>Radio cryptée ;</li>
+<li>Véhicule de service (si autorisé) ;</li> 
+<li>Armement réglementaire ;</li> 
+<li>Accès aux installations sécurisées.</li>   
+</ul> 
 
-        <hr>
+<hr>
 
-        <p class="confidentiel">
-            AVERTISSEMENT FINAL
-        </p>
+<h2>6. DURÉE DU CONTRAT</h2>
+ 
+<p>Le présent contrat est établi à durée permanente.</p> 
+<p>L’agent conserve son statut actif au sein du United States Secret Service (USSS)
+jusqu’à révocation officielle, démission volontaire ou décision administrative
+émanant de la direction des opérations.</p> 
 
-        <p>
-            Toute reproduction non autorisée
-            est strictement interdite.
-        </p>
+<hr>
 
-        <hr>
+<p class="confidentiel">AVERTISSEMENT FINAL</p> 
 
-        <p>
-            Fait au Department of Homeland Security le :
-            <span id="datej"></span>
-        </p>
+<p>Ce document contient des informations classifiées.</p> 
 
-        <!-- SIGNATURES -->
+<p>Toute reproduction, diffusion ou consultation non autorisée est interdite.</p> 
+
+<hr>
+
+<p class="texte-couleur signature-space">
+Fait au Department of Homeland Security en date du :
+<span id="datej"></span>
+</p>
+
+</div>
+
+ <!-- SIGNATURES -->
 
         <div class="signature-container">
 
-            <div class="signature-box">
+    <div class="signature-box">
 
-                <div class="signature-hand">
-                    William Carter
-                </div>
+        <div>
+            Directeur des opérations USSS
+        </div>
 
-                <div class="signature-line">
-                    Directeur des opérations USSS
-                </div>
-
-            </div>
-
-            <div class="signature-box">
-
-                <div class="signature-hand">
-                    Agent <span id="agentSign"></span>
-                </div>
-
-                <div class="signature-line">
-                    Signature de l’agent
-                </div>
-
-            </div>
-
+        <div class="signature-hand">
+            <span id="nomd"></span>
         </div>
 
     </div>
+
+    <div class="signature-box">
+
+    <div>
+        Signature de l’agent
+    </div>
+
+    <div id="z" class="signature-hand"></div>
+
+</div>
+
+</div>
 
     <div class="page-footer">
         UNITED STATES SECRET SERVICE — Page 2 / 2
@@ -488,8 +475,9 @@ async function generate(){
     const alias = document.getElementById("alias").value;
     const dateN = document.getElementById("dateN").value;
     const dateJ = document.getElementById("dateJ").value;
-
-    // =========================
+    const nomD = document.getElementById("nomD").value;
+  
+  // =========================
     // INJECTION
     // =========================
 
@@ -501,9 +489,11 @@ async function generate(){
     document.getElementById("daten").innerText = dateN;
     document.getElementById("datej").innerText = dateJ;
 
-    document.getElementById("agentSign").innerText = name;
+    document.getElementById("nomd").innerText = nomD;
+    document.getElementById("z").innerText = nomR;
 
-    // =========================
+
+  // =========================
     // ATTENTE POLICES
     // =========================
 
