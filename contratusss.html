@@ -4,251 +4,236 @@
 
 <meta charset="UTF-8">
 
-<!-- Police signature manuscrite -->
+<title>Générateur USSS</title>
+
+<!-- Police signature -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
-<!-- Librairie capture écran -->
-<script src="https://cdn.jsdelivr.net/npm/html2canvas"></script>
+<!-- html2canvas -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
 <style>
 
-/* =============================
-STYLE GLOBAL PAGE
-============================= */
+/* =========================
+STYLE GLOBAL
+========================= */
 
-body {
-  font-family: Arial, sans-serif;
-  background: #ddd;
-  text-align: center;
+body{
+    margin:0;
+    padding:30px;
+    background:#dcdcdc;
+    font-family:Arial, sans-serif;
+    text-align:center;
 }
 
-/* =============================
-FORMAT DOCUMENT A4
-============================= */
+/* =========================
+FORMULAIRE
+========================= */
 
-.page {
-
-  width: 794px;
-  height: 1123px;
-
-  background: #fcfcfc;
-
-  margin: 40px auto;
-
-  position: relative;
-
-  overflow: hidden;
-
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    max-width:700px;
+    margin:0 auto 25px auto;
 }
 
-/* =============================
-FILIGRANE FOND DOCUMENT
-============================= */
-
-.page::before {
-
-  content: "";
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  width: 80%;
-  height: 80%;
-
-  background: url('filigrane.png') no-repeat center;
-  background-size: contain;
-
-  transform: translate(-50%, -50%);
-
-  opacity: 0.20;
-
-  pointer-events: none;
-
+.form-grid input{
+    padding:10px;
+    width:100%;
+    box-sizing:border-box;
 }
 
-/* =============================
-BANNIERE HAUT PAGE
-============================= */
-
-.header img {
-  width: 100%;
-  display: block;
+button{
+    padding:12px 25px;
+    border:none;
+    background:#11263e;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    border-radius:5px;
 }
 
-/* TITRES */
+button:hover{
+    opacity:0.9;
+}
 
-h1 {
+/* =========================
+PAGE A4
+========================= */
 
-  text-align: center;
-  margin-bottom: 5px;
-  margin-top: 10px;
+.page{
+
+    width:794px;
+    height:1123px;
+
+    background:#fcfcfc;
+
+    margin:30px auto;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+
+    text-align:left;
 
 }
 
-h2 {
+/* =========================
+FILIGRANE
+========================= */
 
-  text-align: center;
-  margin-top: 0;
+.page::before{
 
+    content:"";
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    width:80%;
+    height:80%;
+
+    background:url("filigrane.png") no-repeat center;
+
+    background-size:contain;
+
+    transform:translate(-50%, -50%);
+
+    opacity:0.08;
+
+    pointer-events:none;
 }
 
+/* =========================
+HEADER
+========================= */
 
-/* SECTIONS */
-
-.section {
-
-  margin-top: 15px;
-
+.header img{
+    width:100%;
+    display:block;
 }
 
-.bold {
-
-  font-weight: bold;
-
+.ligne-banniere{
+    width:100%;
+    height:3px;
+    background:#e19023;
 }
 
-/* FOOTER TEXTE */
+/* =========================
+CONTENU
+========================= */
 
-.footer {
-
-  margin-top: 30px;
-
+.content{
+    padding:35px 55px 180px 55px;
+    position:relative;
+    z-index:2;
 }
 
-/* =============================
-ZONE DOUBLE SIGNATURE
-============================= */
-
-.signature-container {
-
-  position: absolute;
-
-  bottom: 70px;
-
-  left: 60px;
-  right: 60px;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  gap: 40px;
-
-  z-index: 2;
-
+h1,h2{
+    text-align:center;
+    color:#11263e;
 }
 
-.signature-box {
-
-  width: 45%;
-
-  text-align: center;
-
+h1{
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
-.signature-line {
-
-  margin-top: 60px;
-
-  border-top: 1px solid #000;
-
-  padding-top: 8px;
-
-  font-size: 14px;
-
+h2{
+    margin-top:20px;
 }
 
-.signature-hand {
-
-  font-family: 'Great Vibes', cursive;
-
-  font-size: 42px;
-
-  transform: rotate(-6deg);
-
-  margin-bottom: -10px;
-
-  color: #111;
-
+.bold{
+    font-weight:bold;
 }
 
-/* =============================
-FORMULAIRE HAUT PAGE
-============================= */
-
-.form-grid {
-
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 10px;
-
-  max-width: 600px;
-
-  margin: auto;
-
+.confidentiel{
+    color:#8B0000;
+    font-weight:bold;
 }
 
-.form-grid input {
-
-  width: 100%;
-
-  padding: 8px;
-
-  box-sizing: border-box;
-
+.section{
+    margin-top:20px;
 }
 
-.content {
-  padding: 30px 60px 200px 60px; /* ← espace en bas */
-  text-align: left;
+hr{
+    margin:25px 0;
 }
 
+/* =========================
+SIGNATURES
+========================= */
 
-.ligne-banniere {
-  width: 100%;
-  height: 3px; /* épaisseur */
-  background-color: #e19023; /* couleur */
+.signature-container{
+
+    position:absolute;
+
+    bottom:80px;
+
+    left:60px;
+    right:60px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:40px;
+
+    z-index:2;
 }
 
-.texte-couleur {
-  color: #11263e; /* couleur */
+.signature-box{
+    width:45%;
+    text-align:center;
 }
 
-.confidentiel {
-  color: #8B0000;
-  font-weight: bold;
+.signature-hand{
+
+    font-family:'Great Vibes', cursive;
+
+    font-size:42px;
+
+    transform:rotate(-6deg);
+
+    margin-bottom:-10px;
 }
 
-/* =============================
-PIED DE PAGE
-============================= */
+.signature-line{
 
-.page-footer {
+    margin-top:60px;
 
-  position: absolute;
+    border-top:1px solid black;
 
-  bottom: 15px;
+    padding-top:10px;
+}
 
-  left: 0;
-  width: 100%;
+/* =========================
+FOOTER
+========================= */
 
-  text-align: center;
+.page-footer{
 
-  font-size: 13px;
+    position:absolute;
 
-  color: #555;
+    bottom:15px;
 
-  border-top: 1px solid #ccc;
+    width:100%;
 
-  padding-top: 8px;
+    text-align:center;
 
-  z-index: 2;
+    font-size:13px;
 
+    color:#555;
+
+    border-top:1px solid #ccc;
+
+    padding-top:8px;
+
+    z-index:2;
 }
 
 </style>
@@ -258,282 +243,298 @@ PIED DE PAGE
 
 <h2>Générateur Document USSS</h2>
 
-<!-- =============================
-FORMULAIRE UTILISATEUR
-============================= -->
+<!-- =========================
+FORMULAIRE
+========================= -->
 
 <div class="form-grid">
 
-<input id="name" placeholder="Matricule de l’agent :">
-<input id="date" placeholder="Date d’entrée en fonction :">
-<input id="ref" placeholder="Référence du dossier :">
-<input id="nomR" placeholder="Nom réel :">
-<input id="alias" placeholder="Alias / Faux nom opérationnel :">
-<input id="dateN" placeholder="Date de naissance :">
-<input id="dateJ" placeholder="Date du jour :">
+<input id="name" placeholder="Matricule de l’agent">
+<input id="date" placeholder="Date d’entrée en fonction">
+
+<input id="ref" placeholder="Référence du dossier">
+<input id="nomR" placeholder="Nom réel">
+
+<input id="alias" placeholder="Alias opérationnel">
+<input id="dateN" placeholder="Date de naissance">
+
+<input id="dateJ" placeholder="Date du jour">
 
 </div>
 
-<br>
+<button onclick="generate()">
+📄 Générer les 2 pages PNG
+</button>
 
-<button onclick="generate()">📄 Générer & Télécharger</button>
+<!-- =====================================================
+PAGE 1
+===================================================== -->
 
-<!-- =============================
-DOCUMENT FINAL
-============================= -->
+<div class="page" id="page1">
 
-<div id="document-container">
+    <div class="header">
+        <img src="banniere.png">
+    </div>
 
-  <!-- PAGE 1 -->
-  <div class="page" id="page1">
+    <div class="ligne-banniere"></div>
 
-<div class="header">
+    <div class="content">
 
-<img src="banniere.png">
+        <h1>CONTRAT D’EMBAUCHE</h1>
 
-</div>
+        <h2>United States Secret Service (USSS)</h2>
 
-<div class="ligne-banniere"></div>
+        <p class="confidentiel">
+            Niveau de Confidentialité : CLASSIFIÉ
+        </p>
 
-<div class="content">
+        <p>
+            <span class="bold">Date d’entrée en fonction :</span>
+            <span id="d"></span>
+        </p>
 
-<h1 class="texte-couleur">CONTRAT D’EMBAUCHE</h1>
-<h2 class="texte-couleur">United States Secret Service (USSS)</h2>
+        <p>
+            <span class="bold">Référence du dossier :</span>
+            <span id="r"></span>
+        </p>
 
-<p class="confidentiel">Niveau de Confidentialité : CLASSIFIÉ</p>
+        <hr>
 
-<p><span class="bold">Date d’entrée en fonction :</span> <span id="d"></span></p>
+        <h2>1. IDENTITÉ DE L’AGENT</h2>
 
-<p><span class="bold">Référence du dossier :</span> <span id="r"></span></p>
+        <p>
+            <span class="bold">Matricule :</span>
+            <span id="n"></span>
+        </p>
 
-<hr>
+        <p>
+            <span class="bold">Nom réel :</span>
+            <span id="nomr"></span>
+        </p>
 
-<div class="section">
+        <p>
+            <span class="bold">Alias :</span>
+            <span id="alias1"></span>
+        </p>
 
-<h2 class="texte-couleur">1. IDENTITÉ DE L’AGENT</h2>
+        <p>
+            <span class="bold">Date de naissance :</span>
+            <span id="daten"></span>
+        </p>
 
-<p><span class="bold">Matricule de l’agent :</span> <span id="n"></span></p>
+        <hr>
 
-<p><span class="bold">Nom réel :</span> <span id="nomr"></span></p>
+        <h2>2. OBJET DU CONTRAT</h2>
 
-<p><span class="bold">Alias / Faux nom opérationnel :</span> <span id="alias1"></span></p>
+        <p>
+            Le United States Secret Service confirme
+            l’intégration officielle de l’agent au sein
+            des opérations fédérales classifiées.
+        </p>
 
-<p><span class="bold">Date de naissance :</span> <span id="daten"></span></p>
+        <ul>
+            <li>Respect de la hiérarchie interne</li>
+            <li>Confidentialité absolue</li>
+            <li>Exécution des missions assignées</li>
+            <li>Usage réservé de l’identité opérationnelle</li>
+        </ul>
 
-</div>
+        <hr>
 
-<hr>
+        <h2>3. CLAUSE DE CONFIDENTIALITÉ</h2>
 
-<h2 class="texte-couleur">2. OBJET DU CONTRAT</h2> 
+        <p>
+            Toutes les données liées au USSS sont classifiées.
+        </p>
 
-<p> Par le présent document, le United States Secret Service (ci-après nommé « USSS ») confirme l’intégration de l’agent mentionné ci-dessus au sein des opérations de protection, de renseignement et de sécurité nationale dans le cadre d’activités strictement confidentielles.</p> 
+        <p class="confidentiel">
+            « TOP SECRET / EYES ONLY »
+        </p>
 
-<p class="bold">L’agent accepte :</p> 
-
-<ul> 
-<li>de respecter la hiérarchie interne ;</li> 
-<li>d’exécuter les missions assignées ;</li>
-<li>de maintenir la confidentialité absolue des informations obtenues ;</li> 
-<li>d’utiliser son identité opérationnelle uniquement dans le cadre des missions autorisées.</li> 
-</ul> 
-
-<hr>
-
-<h2 class="texte-couleur">3. CLAUSE DE CONFIDENTIALITÉ</h2> 
-
-<p> Toutes les informations, identités, opérations, communications et documents liés aux activités du USSS sont considérés comme :</p>
-
-<p class="confidentiel">« TOP SECRET / EYES ONLY »</p>
-
-<p class="bold">Toute divulgation non autorisée pourra entraîner :</p> 
-
-<ul> 
-<li>suspension immédiate ;</li> 
-<li>révocation du statut d’agent ;</li>
-<li>poursuites internes ;</li> 
-<li>placement en détention fédérale.</li> 
-</ul> 
-
-<p> L’agent s’engage à ne transmettre aucune donnée sensible à des civils, organisations externes ou agences non autorisées.</p>
-
-</div> <!-- FIN PAGE 1 -->
-
-<div class="page-footer">
-  UNITED STATES SECRET SERVICE — Page 1 / 2
-</div>
-
- </div>
-
-  </div>
-
-<!-- PAGE 2 -->
-  <div class="page" id="page2">
-
-<div class="header">
-
-<img src="banniere.png">
-
-</div>
-
-<div class="ligne-banniere"></div>
-
-<div class="content">
-
-<h2 class="texte-couleur">4. IDENTITÉ OPÉRATIONNELLE</h2> 
-
-<p>L’agent pourra être amené à utiliser :</p> 
-
-<ul> 
-<li>une fausse identité ;</li> 
-<li>de faux documents administratifs ;</li> 
-<li>des véhicules banalisés ;</li>
-<li>des équipements de surveillance ;</li> 
-<li>des codes de communication sécurisés.</li>  
-</ul> 
-
-<p>Toute utilisation abusive en dehors des missions autorisées est interdite.</p>
-
-<hr>
-
-<h2 class="texte-couleur">5. ÉQUIPEMENT FOURNI</h2> 
-
-<p>L’USSS met à disposition de l’agent :</p> 
-
-<ul> 
-<li>Badge fédéral RP ;</li> 
-<li>Carte d’identification sécurisée ;</li> 
-<li>Radio cryptée ;</li>
-<li>Véhicule de service (si autorisé) ;</li> 
-<li>Armement réglementaire ;</li> 
-<li>Accès aux installations sécurisées.</li>   
-</ul> 
-
-<hr>
-
-<h2 class="texte-couleur">6. DURÉE DU CONTRAT</h2>
- 
-<p>Le présent contrat est établi à durée permanente.<p> 
-<p>L’agent conserve son statut actif au sein du United States Secret Service (USSS)
-jusqu’à révocation officielle, démission volontaire ou décision administrative
-émanant de la direction des opérations.<p> 
-
-<hr>
-
-<div class="footer"> <p class="confidentiel">AVERTISSEMENT FINAL</p> 
-
-<p>Ce document contient des informations classifiées.</p> 
-
-<p>Toute reproduction, diffusion ou consultation non autorisée est interdite.</p> 
-
-</div> 
-
-
-<hr>
-
-<p class="texte-couleur">Fait au Department of Homeland Security en date du :
-<span id="datej"></span>
-</p>
-
-<div class="signature-container">
-
-  <!-- SIGNATURE DIRECTEUR -->
-  <div class="signature-box">
-
-    <div id="signatureDirecteur"
-         class="signature-hand"></div>
-
-    <div class="signature-line">
-
-      <p class="texte-couleur bold">
-        Directeur des opérations USSS
-      </p>
-
-         </div>
-
-  </div>
-
-  <!-- SIGNATURE AGENT -->
-  <div class="signature-box">
-
-    <div id="signatureAgent"
-         class="signature-hand"></div>
-
-    <div class="signature-line">
-
-      <p class="texte-couleur bold">
-        Signature de l’agent
-      </p>
+        <ul>
+            <li>Suspension immédiate</li>
+            <li>Révocation du statut</li>
+            <li>Poursuites internes</li>
+            <li>Détention fédérale</li>
+        </ul>
 
     </div>
 
-  </div>
+    <div class="page-footer">
+        UNITED STATES SECRET SERVICE — Page 1 / 2
+    </div>
 
 </div>
 
-</div> <!-- FIN PAGE 2 -->
+<!-- =====================================================
+PAGE 2
+===================================================== -->
 
-<div class="page-footer">
-  UNITED STATES SECRET SERVICE — Page 2 / 2
+<div class="page" id="page2">
+
+    <div class="header">
+        <img src="banniere.png">
+    </div>
+
+    <div class="ligne-banniere"></div>
+
+    <div class="content">
+
+        <h2>4. IDENTITÉ OPÉRATIONNELLE</h2>
+
+        <ul>
+            <li>Fausses identités</li>
+            <li>Documents sécurisés</li>
+            <li>Véhicules banalisés</li>
+            <li>Codes cryptés</li>
+        </ul>
+
+        <hr>
+
+        <h2>5. ÉQUIPEMENT FOURNI</h2>
+
+        <ul>
+            <li>Badge fédéral</li>
+            <li>Carte sécurisée</li>
+            <li>Radio cryptée</li>
+            <li>Armement réglementaire</li>
+        </ul>
+
+        <hr>
+
+        <h2>6. DURÉE DU CONTRAT</h2>
+
+        <p>
+            Le contrat est établi à durée permanente.
+        </p>
+
+        <p>
+            L’agent conserve son statut actif
+            jusqu’à révocation officielle.
+        </p>
+
+        <hr>
+
+        <p class="confidentiel">
+            AVERTISSEMENT FINAL
+        </p>
+
+        <p>
+            Toute reproduction non autorisée
+            est strictement interdite.
+        </p>
+
+        <hr>
+
+        <p>
+            Fait au Department of Homeland Security le :
+            <span id="datej"></span>
+        </p>
+
+        <!-- SIGNATURES -->
+
+        <div class="signature-container">
+
+            <div class="signature-box">
+
+                <div class="signature-hand">
+                    William Carter
+                </div>
+
+                <div class="signature-line">
+                    Directeur des opérations USSS
+                </div>
+
+            </div>
+
+            <div class="signature-box">
+
+                <div class="signature-hand">
+                    Agent <span id="agentSign"></span>
+                </div>
+
+                <div class="signature-line">
+                    Signature de l’agent
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="page-footer">
+        UNITED STATES SECRET SERVICE — Page 2 / 2
+    </div>
+
 </div>
 
-</div> <!-- FIN .page -->
-
-</div> <!-- FIN document-container -->
+<!-- =====================================================
+SCRIPT
+===================================================== -->
 
 <script>
 
-/* =============================
-FONCTION GENERATION DOCUMENT
-============================= */
+async function generate(){
 
-function generate() {
+    // =========================
+    // RÉCUPÉRATION VALEURS
+    // =========================
 
-  // Récupération champs utilisateur
+    const name = document.getElementById("name").value;
+    const date = document.getElementById("date").value;
+    const ref = document.getElementById("ref").value;
+    const nomR = document.getElementById("nomR").value;
+    const alias = document.getElementById("alias").value;
+    const dateN = document.getElementById("dateN").value;
+    const dateJ = document.getElementById("dateJ").value;
 
-  let name = document.getElementById("name").value;
-  let date = document.getElementById("date").value;
-  let ref = document.getElementById("ref").value;
-  let nomR = document.getElementById("nomR").value;
-  let alias = document.getElementById("alias").value;
-  let dateN = document.getElementById("dateN").value;
-  let dateJ = document.getElementById("dateJ").value;
-  
-  // Injection valeurs dans document
+    // =========================
+    // INJECTION
+    // =========================
 
-  document.getElementById("n").innerText = name;
-  document.getElementById("d").innerText = date;
-  document.getElementById("r").innerText = ref;
-  document.getElementById("nomr").innerText = nomR;
-  document.getElementById("alias1").innerText = alias;
-  document.getElementById("daten").innerText = dateN;
-  document.getElementById("datej").innerText = dateJ;
+    document.getElementById("n").innerText = name;
+    document.getElementById("d").innerText = date;
+    document.getElementById("r").innerText = ref;
+    document.getElementById("nomr").innerText = nomR;
+    document.getElementById("alias1").innerText = alias;
+    document.getElementById("daten").innerText = dateN;
+    document.getElementById("datej").innerText = dateJ;
 
+    document.getElementById("agentSign").innerText = name;
 
-  document.fonts.ready.then(() => {
+    // =========================
+    // ATTENTE POLICES
+    // =========================
 
-    setTimeout(() => {
+    await document.fonts.ready;
 
-      html2canvas(document.getElementById("document-container"), {
+    // =========================
+    // CAPTURE PAGE 1 + PAGE 2
+    // =========================
 
-        scale: 3,
-        useCORS: true
+    const pages = [
+        document.getElementById("page1"),
+        document.getElementById("page2")
+    ];
 
-      }).then(canvas => {
+    for(let i = 0; i < pages.length; i++){
 
-        let link = document.createElement("a");
+        const canvas = await html2canvas(pages[i],{
+            scale:3,
+            useCORS:true
+        });
 
-        link.download = "document-rp.png";
+        const link = document.createElement("a");
+
+        link.download = `USSS-page-${i+1}.png`;
 
         link.href = canvas.toDataURL("image/png");
 
         link.click();
-
-      });
-
-    }, 300); // 
-  });
-
+    }
 }
+
 </script>
 
 </body>
